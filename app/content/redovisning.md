@@ -22,7 +22,9 @@ Det var först när jag läst tidigare inlämningar jag kom på varför det inte
  Wamp. Så fort jag fick igång den så fungerade  
  $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN); Jag försökte även att få till mitt eget  
 tärningspel från oophp-kursen men det ville sig inte. Det var här man märker att kunnandet inte  
-finns i tillräcklig omfattning ännu.   
+finns i tillräcklig omfattning ännu. Jag har sett att det finns en beskrivning på forumet om hur  
+man lägger till egna klasser och och även får till sessionshanteringen. men jag har inte lyckats  
+tränga in in det ämnet ännu.  
 Mitt arbete finns även på Github https://github.com/roka13/phpmvc.git
 
  
