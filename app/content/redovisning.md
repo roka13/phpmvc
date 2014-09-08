@@ -22,7 +22,8 @@ Det var först när jag läst tidigare inlämningar jag kom på varför det inte
  Wamp. Så fort jag fick igång den så fungerade  
  $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN); Jag försökte även att få till mitt eget  
 tärningspel från oophp-kursen men det ville sig inte. Det var här man märker att kunnandet inte  
-finns i tillräcklig omfattning ännu.
+finns i tillräcklig omfattning ännu.   
+Mitt arbete finns även på Github https://github.com/roka13/phpmvc.git
 
  
 Kmom02: Kontroller och Modeller
