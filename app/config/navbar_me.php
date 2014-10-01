@@ -21,29 +21,29 @@ return [
         // This is a menu item
         'Redovisning'  => [
             'text'  => 'Redovisning',   
-           'url'   => 'redovisning',   
+            'url'   => 'redovisning',   
             'title' => 'Här skriver vi redovisningen',
 
             // Here we add the submenu, with some menu items, as part of a existing menu item
-       /*     'submenu' => [
+           'submenu' => [
 
                 'items' => [
 
                     // This is a menu item of the submenu
-                    'item 1'  => [
-                        'text'  => 'kmom01',   
-                      'url'   => 'kmom01',  
+                    'kmom01'  => [
+                        'text'  => 'Kmom01',   
+                        'url'   => 'kmom01',  
                         'title' => 'kmom01'
                     ],
 
                     // This is a menu item of the submenu
-                    'item 2'  => [
-                        'text'  => 'kmom02',   
+                    'kmom02'  => [
+                        'text'  => 'Kmom02',   
                         'url'   => 'kmom02',  
                         'title' => 'kmom02'
                     ],
                 ],
-            ], */
+            ], 
         ],
  
         // This is a menu item
@@ -72,12 +72,13 @@ return [
 					'title' => 'Tärning'
 					],
 					
-		/*// This is a submenu item 
-                    'dicegame'  => [ 
-                        'text'  => 'Kasta tärning',    
-                        'url'   => 'dicegame',   
-                        'title' => 'Kasta tärning' 
-                    ], 	*/		
+		// This is a submenu item 
+                    'comment'  => [ 
+                        'text'  => 'Kommentarer',    
+                        'url'   => 'comment',   
+                        'title' => 'Övningex kmom02' 
+                    ],
+					
 				],
 			],
 		],

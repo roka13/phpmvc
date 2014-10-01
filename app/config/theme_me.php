@@ -4,7 +4,6 @@
  *
  */
 return [
-
     /**
      * Settings for Which theme to use, theme directory is found by path and name.
      *
@@ -15,8 +14,6 @@ return [
         'path' => ANAX_INSTALL_PATH . 'theme/',
         'name' => 'anax-base',
     ],
-
-    
     /** 
      * Add default views.
    
@@ -34,17 +31,13 @@ return [
             'siteTagline' => "En enkel sida utan en massa lull",
         ], 
         'sort'     => -1
-	
     ],
-	    
-
         [
             'region' => 'main',
             'template' => 'me/page',
             'data' => [],
             'sort' => -1
         ],
-	
 	
     ['region' => 'footer', 'template' => 'me/footer', 'data' => [], 'sort' => -1],
 
@@ -62,7 +55,6 @@ return [
 
 ],
 
-
     /** 
      * Data to extract and send as variables to the main template file.
      */
@@ -75,7 +67,7 @@ return [
         'title_append' => ' | Anax a web template',
 
         // Stylesheets
-		'stylesheets' => ['css/style_me.css', 'css/navbar_me.css'],
+		'stylesheets' => ['css/style_me.css', 'css/navbar_me.css' , 'css/form.css'],
         // Inline style
         'style' => null,
 
@@ -95,4 +87,3 @@ return [
         'google_analytics' => null,
     ],
 ];
-

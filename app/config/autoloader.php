@@ -3,8 +3,6 @@
  * Enable autoloaders.
  *
  */
-
-
 /**
  * Default Anax autoloader, and the add specifics through a self invoking anonomous function.
  * Add autoloader for namespace Anax and a default directory for unknown vendor namespaces.
@@ -15,12 +13,10 @@ call_user_func(function() {
     $loader = new \Anax\Loader\CPsr4Autoloader();
     $loader->addNameSpace('Anax', ANAX_INSTALL_PATH . 'src')
            ->addNameSpace('', ANAX_APP_PATH . 'src')
+		  // ->addNameSpace('Comments', ANAX_APP_PATH . 'src/Comments') // mitt tillägg
            ->addNameSpace('Michelf', ANAX_INSTALL_PATH . '3pp/php-markdown/Michelf')
            ->register();
 });
-
-
-
 /**
  * Including composer autoloader if available.
  *
@@ -29,4 +25,3 @@ call_user_func(function() {
 if(is_file(ANAX_INSTALL_PATH . 'vendor/autoload.php')) {
     include ANAX_INSTALL_PATH . 'vendor/autoload.php';
 }
-
