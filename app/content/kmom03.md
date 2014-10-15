@@ -28,15 +28,11 @@ som en import i style.less kan man utnyttja variables.less grundinställningar. 
 att få samma grundtema.  
 Min tanke var att styla om hela min webbplats efter detta och då använda en gemensam 'config/theme.php'-fil. Men vid testkörning med 
 det såg jag så mycket som måste fixas till så jag nöjde mig med att ge Tema-filen detta utseende.   
+Så var det dags att ladda upp på BTH och efter lite trassel med filrättigheter gick det bra. Däremot validerar inte sidorna på grund
+av fel i de nedladdade grid och mixins-filerna. Det gick lätt att korrigera men de fel i valideringen i FontAwesomefilerna ger jag mig
+inte på utan de får vara kvar. sidorna fungerar ju.  
 
 
-
-
-
-
-
-
- 
 Mitt arbete finns även på Github https://github.com/roka13/phpmvc.git
 
  
