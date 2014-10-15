@@ -4,6 +4,7 @@
  *
  */
 return [
+
     /**
      * Settings for Which theme to use, theme directory is found by path and name.
      *
@@ -12,36 +13,22 @@ return [
      */
     'settings' => [
         'path' => ANAX_INSTALL_PATH . 'theme/',
-        'name' => 'anax-base',
+        'name' => 'anax-grid',
     ],
+
+    
     /** 
      * Add default views.
-   
+     */
     'views' => [
-        ['region' => 'header', 'template' => 'welcome/header', 'data' => [], 'sort' => -1],
-        ['region' => 'footer', 'template' => 'welcome/footer', 'data' => [], 'sort' => -1],
-    ],
-	  */
-'views' => [
-    [
-        'region'   => 'header', 
-        'template' => 'me/header', 
-        'data'     => [
-            'siteTitle' => "Min me-sida i PHPMVC",
-            'siteTagline' => "En enkel sida utan en massa lull",
+        ['region' => 'header', 'template' => 'theme/header',
+		 'data'     => [
+		     'siteTitle' => "Min me-sida i PHPMVC",
+            'siteTagline' => "Temasidor för Kursmoment 3",
         ], 
-        'sort'     => -1
-    ],
-        [
-            'region' => 'main',
-            'template' => 'me/page',
-            'data' => [],
-            'sort' => -1
-        ],
-	
-    ['region' => 'footer', 'template' => 'me/footer', 'data' => [], 'sort' => -1],
-
-//view for navbar
+		'sort' => -1],
+		
+		//view for navbar
     [
         'region' => 'navbar', 
         'template' => [
@@ -52,8 +39,19 @@ return [
         'data' => [], 
         'sort' => -1
     ],
+		  [
+            'region' => 'main',
+            'template' => 'theme/page',
+            'data' => [],
+            'sort' => -1
+        ],
+		
+		
+		
+        ['region' => 'footer', 'template' => 'theme/footer', 'data' => [], 'sort' => -1],
+		 
+    ],
 
-],
 
     /** 
      * Data to extract and send as variables to the main template file.
@@ -67,11 +65,11 @@ return [
         'title_append' => ' | Anax a web template',
 
         // Stylesheets
-	//'../stylephp/style.php',  
-		'stylesheets' => [  'css/style_me.css', 'css/navbar_me.css' , 'css/form.css'],
-		//'stylesheets' => ['css/anax-grid/style.php'],		
+    //  'stylesheets' => ['css/style_me.css', 'css/navbar_me.css' ],
+		'stylesheets' => ['css/anax-grid/style.php'],
+	
         // Inline style
-        'style' => null,
+      'style' => null,
 
         // Favicon
         'favicon' => 'favicon1.ico',
@@ -89,3 +87,4 @@ return [
         'google_analytics' => null,
     ],
 ];
+

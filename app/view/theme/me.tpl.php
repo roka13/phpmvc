@@ -1,16 +1,14 @@
-
-<?php
-    if (isset($content)) : ?> 
+<div>
+ <?php   if (isset($main)) : ?> 
  <article>
 	<figure class ='left'>
 	<img  src='<?=$this->url->asset('img/me.jpg')?>' alt='Bild på mig'/>
 	</figure>
 
-	
-        <?=$content?>
+        <?=$main?>
 </article>
      <?php endif; ?>
-
+	 
     <?php if(isset($byline)) : ?>
            <footer class="byline">
   <figure class=right> 
@@ -20,4 +18,4 @@
        
         </footer>
     <?php endif; ?>
- 
+</div>	

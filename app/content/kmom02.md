@@ -18,8 +18,10 @@ Jag skapade själv två nya klasser under app/src/Comments. CommentsController.p
  med det så istället fick det bli så att de initierades  i index.php med ytterligare en $di->set(CommentsController), etc utöver den ursprungliga.  
  Här vet jag nog inte riktigt vad jag gjorde men jag fick det att fungera fullt ut på  alla sidor. Det sämsta var nog att jag valt snarlika namn på controllerna.
  Det blir lite svårt att skilja på comment och comments i Templatefilerna.  
- Så får man då så småningom allt att fungera bra på hemmaservern men på BTH dyker det omedelbart upp ett felmeddelande om Header already sent etc. Letar då   
- igenom samtliga filer och kollar sluttaggar mm men lyckats inte se felet. Ett nödrop på forumet ger den enkla förklaringen 'Du har kodat i UTF med BOM'  
+ För att få olika kommentarer på olika sidor så lade jag till ett dolt index $page i form.tpl.php som sedan sparades med övriga uppgifter i sessionen. För att
+ sedan lista de kommentarer som tillhör en viss sida jämförs detta värde med det verkliga värdet för sidan.  
+ 
+ Så får man då så småningom allt att fungera bra på hemmaservern men på BTH dyker det omedelbart upp ett felmeddelande om Header already sent etc. Letar då igenom samtliga filer och kollar sluttaggar mm men lyckats inte se felet. Ett nödrop på forumet ger den enkla förklaringen 'Du har kodat i UTF med BOM'  
  Javisst hade jag det i några filer efter en uppdatering av Notepad som ändrat min inställning.  Felet var löst men kostade en hel del tid i felsökning.  
  Det är på sånt här man ser att man fortfarande är ganska grön på programmering.
  

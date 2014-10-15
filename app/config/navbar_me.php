@@ -42,9 +42,71 @@ return [
                         'url'   => 'kmom02',  
                         'title' => 'kmom02'
                     ],
+					// This is a menu item of the submenu
+                    'kmom03'  => [
+                        'text'  => 'Kmom03',   
+                        'url'   => 'kmom03',  
+                        'title' => 'kmom03'
+                    ],
+					
                 ],
             ], 
         ],
+		
+		 // This is a menu item
+        'Tema'  => [
+            'text'  => 'Tema-sidorna',   
+            'url'   => 'theme',  
+            'title' => 'Tema-Sidorna',
+			
+		// Here we add the submenu, with some menu items, as part of a existing menu item
+            'submenu' => [
+
+                'items' => [	
+			
+			 // This is a menu item of the submenu
+                     // This is a menu item
+        'regioner' => [
+            'text'  =>'Regioner Demo', 
+            'url'   =>'regioner',  
+            'title' => 'Regioner'
+        ], 
+		
+		'typography' => [
+            'text'  =>'Typografi Demo', 
+            'url'   =>'typography',  
+            'title' => 'Typografi'
+        ], 
+		'awesome' => [
+            'text'  =>'Awesome Demo', 
+            'url'   =>'awesome',  
+            'title' => 'Awesome'
+        ], 
+			
+		],	
+			
+		],	
+			
+			
+			
+			
+			
+			
+			
+        ],
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
  
         // This is a menu item
         'source' => [

@@ -83,6 +83,105 @@ $app->router->add('kmom02', function() use ($app) {
  	include __DIR__.'/page-with-commentsme.php';
 });
 
+$app->router->add('kmom03', function() use ($app) {
+    $app->theme->setTitle("Kursmoment 3");
+    $content = $app->fileContent->get('kmom03.md');
+    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
+ 	$byline = $app->fileContent->get('byline.md'); 
+    $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
+    $app->views->add('me/page', [
+        'content' => $content,
+        'byline' => $byline,
+    ]);
+ 	include __DIR__.'/page-with-commentsme.php';
+});
+
+
+$app->router->add('theme', function() use ($app) {
+$app->theme->configure(ANAX_APP_PATH . 'config/theme_grid.php');
+    $app->theme->setTitle("Tema"); 
+	$app->theme->addStylesheet('css/anax-grid/svalbard.less'); 
+//$app->theme->addStylesheet('css/anax-grid/wrapper.css');
+	$main = $app->fileContent->get('me.md'); 
+    $main = $app->textFilter->doFilter($main, 'shortcode, markdown'); 
+	$byline = $app->fileContent->get('byline.md'); 
+    $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
+
+	
+	$sidebar = $app->fileContent->get('camera.html'); 
+
+    $app->views ->addString('Isberg', 'flash')
+            ->addString('Valross ', 'featured-1')
+            ->addString('Glaciär', 'featured-2')
+			->addString('Isbjörn', 'featured-3')
+			->addString($sidebar, 'sidebar')
+			->add('theme/me', [ 
+						'main' => $main, 
+						'byline' => $byline, 
+												])
+				->addString('Polarräv', 'triptych-1')
+               ->addString('Knölval', 'triptych-2')
+               ->addString('Isbjörn', 'triptych-3');
+             
+  
+	
+});
+
+
+$app->router->add('typography', function() use ($app) { 
+$app->theme->configure(ANAX_APP_PATH . 'config/theme_grid.php');
+
+$app->theme->addStylesheet('css/anax-grid/wrapper.css');
+   
+      $app->theme->setTitle("Typografi Demo");
+	  
+    $content = $app->fileContent->get('typography.html'); 
+
+	$app->views ->addString($content, 'main')
+				->addString($content, 'sidebar');
+		   
+  });
+
+$app->router->add('regioner', function() use ($app) {
+$app->theme->configure(ANAX_APP_PATH . 'config/theme_grid.php');
+	
+$app->theme->addStylesheet('css/anax-grid/regions_demo.css');
+$app->theme->addStylesheet('css/anax-grid/wrapper.css');
+
+    $app->theme->setTitle("Regioner Demo");
+	
+    $app->views->addString('flash', 'flash')
+               ->addString('featured-1', 'featured-1')
+               ->addString('featured-2', 'featured-2')
+               ->addString('featured-3', 'featured-3')
+               ->addString('main', 'main')
+               ->addString('sidebar', 'sidebar')
+               ->addString('triptych-1', 'triptych-1')
+               ->addString('triptych-2', 'triptych-2')
+               ->addString('triptych-3', 'triptych-3')
+               ->addString('footer-col-1', 'footer-col-1')
+               ->addString('footer-col-2', 'footer-col-2')
+               ->addString('footer-col-3', 'footer-col-3')
+               ->addString('footer-col-4', 'footer-col-4');
+ 
+});
+
+$app->router->add('awesome', function() use ($app) {
+$app->theme->configure(ANAX_APP_PATH . 'config/theme_grid.php');
+$app->theme->addStylesheet('css/anax-grid/wrapper.css');
+    $app->theme->setTitle("Awesome Demo");
+	
+	 $main = $app->fileContent->get('links.html');
+ 	$flash = $app->fileContent->get('camera.html'); 
+	$sidebar = $app->fileContent->get('spinner.html'); 
+	
+    $app->views->addString($flash, 'flash')
+               ->addString($main, 'main')
+               ->addString($sidebar, 'sidebar');
+});
+
+
+
 
 $app->router->add('source', function() use ($app) {
     $app->theme->addStylesheet('css/source.css');
