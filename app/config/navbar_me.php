@@ -48,6 +48,12 @@ return [
                         'url'   => 'kmom03',  
                         'title' => 'kmom03'
                     ],
+					// This is a menu item of the submenu
+                    'kmom04'  => [
+                        'text'  => 'Kmom04',   
+                        'url'   => 'kmom04',  
+                        'title' => 'Kmom04'
+                    ],
 					
                 ],
             ], 

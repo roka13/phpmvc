@@ -96,6 +96,19 @@ $app->router->add('kmom03', function() use ($app) {
  	include __DIR__.'/page-with-commentsme.php';
 });
 
+$app->router->add('kmom04', function() use ($app) {
+    $app->theme->setTitle("Kursmoment 4");
+    $content = $app->fileContent->get('kmom04.md');
+    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
+ 	$byline = $app->fileContent->get('byline.md'); 
+    $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
+    $app->views->add('me/page', [
+        'content' => $content,
+        'byline' => $byline,
+    ]);
+ 	include __DIR__.'/page-with-commentsme.php';
+});
+
 
 $app->router->add('theme', function() use ($app) {
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_grid.php');
