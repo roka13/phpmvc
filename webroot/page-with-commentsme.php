@@ -4,11 +4,11 @@
  *
  */
     $app->dispatcher->forward([
-        'controller' => 'comment',
+        'controller' => 'comments',
         'action'     => 'view',
 	    ]);
 
-    $app->views->add('comment/form', [
+    $app->views->add('comments/form', [
         'mail'      => null,
         'web'       => null,
         'name'      => null,

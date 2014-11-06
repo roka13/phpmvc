@@ -10,112 +10,187 @@ class CommentsController  implements \Anax\DI\IInjectionAware
 {
     use \Anax\DI\TInjectable;
 
+/**
+ * Initialize the controller.
+ *
+ * @return void  
+ */
+public function initialize()
+{
+    $this->comments = new \Anax\Comments\Comments();
+    $this->comments->setDI($this->di);
+}
 
-
-	/**
-     * Add a comment.
-     *with a specific page adress
+/**
+     * View all comments.
+     *
      * @return void
-	*/
-	public function addAction()
-		{
-			$isPosted = $this->request->getPost('doCreate');
-        
-			if (!$isPosted) {
-				$this->response->redirect($this->request->getPost('redirect'));
-			}
+     */
+    public function viewAction()
+    {
+	$this->CommentsController->initialize();
+        $all = $this->comments->findAll();
+        $this->views->add('comments/comments', [
+            'comments' => $all,
+        ]);
+    }
 
-        $comment = [
-            'content'   => $this->request->getPost('content'),
+ /**
+ * Add new comment.
+ *
+ * @params posted texts in comment/form
+ *
+ * @return void 
+ */
+ public function addAction() {
+
+			$now = date('Y-m-d ');
+			
+			$this->comments->save([
+			'content'   => $this->request->getPost('content'),
             'name'      => $this->request->getPost('name'),
             'web'       => $this->request->getPost('web'),
             'mail'      => $this->request->getPost('mail'),
-            'timestamp' => time(),
+            'timestamp' => $now,
             'ip'        => $this->request->getServer('REMOTE_ADDR'),
 			'page'     =>$this->request->getPost('page'),
-			];
-
-        $comments = new \Phpmvc\Comment\CommentsInSession();
-        $comments->setDI($this->di);
-
-        $comments->add($comment);
-
+				]);
+				
         $this->response->redirect($this->request->getPost('page'));
+}
+
+	
+/**
+ * Remove comment.
+ *
+ * @param integer $id of comment to remove.
+ *
+ * @return void
+ */
+public function removeAction($id = null)
+{
+    if (!isset($id)) {
+        die("Missing id");
     }
-	
-	
-   
-    /**
-     * Remove a specific comment.
-     *
-     * @return void
-     */
-    public function removeAction($id=null)
-    {
-		if (!isset($id)) { 
-            die("Missing id"); 
-			} 
-		
-		$comments = new CommentsSession();
-		$comments->setDI($this->di);
-		$url = $this->request->getPost('redirect'); 
-		$id = $this->request->getPost('id');
-		$comments->delete($id); 
-		$this->response->redirect($this->request->getPost('redirect')); 
-    }      
+  $res = $this->comments->delete($id);
+ $this->response->redirect($this->request->getPost('redirect'));
+}
 
-	/**
-     * Edit a specific comment.
-     *
-     * @return void
-     */	
-	 public function editAction($id=null) 
-    { 
-	     if(!isset($id)) { 
-			die("Missing id"); 
+
+ /**  
+   * Edit and Update comments  
+   *  
+   * @param integer $id of comment to update.  
+   *  Uses Cform for the form
+   * @return void 
+   */  
+   public function editAction($id = null)  
+   {  
+		session_start();
+        $form = $this->form; 
+        $comments = $this->comments->find($id); 
+
+        $form = $form->create([], [ 
+            'textarea' => [ 
+                'type'        => 'text', 
+                'label'       => 'Kommentar', 
+                'required'    => true, 
+                'validation'  => ['not_empty'], 
+                'value' => $comments->content, 
+            ], 
+            'name' => [ 
+                'type'        => 'text', 
+                'label'       => 'Namn', 
+                'required'    => true, 
+                'validation'  => ['not_empty'], 
+                'value' => $comments->name, 
+            ], 
+			
+			'url' => [ 
+                'type'        => 'url', 
+				 'label'       => 'Hemsida', 
+                 'value' => $comments->web, 
+			     'validation'  => ['pass'],
+				  
+            ], 
+			
+            'email' => [ 
+                'type'        => 'email', 
+				 'label'       => 'Email', 
+			     'value' => $comments->mail, 
+				  'validation'  => ['pass'],
+            ], 
+			
+            'submit' => [ 
+                'type'      => 'submit', 
+				'value' => 'Ändra',
+                'callback'  => function($form) use ($comments) { 
+
+              	$now = date('Y-m-d ');
+
+                    $this->comments->save([ 
+                        'id'        => $comments->id, 
+                        'content'     => $form->Value('textarea'), 
+                        'mail'     => $form->Value('email'), 
+                        'name'         => $form->Value('name'), 
+                        'web'     =>  $form->Value('url'),
+                       'timestamp' => $now,
+                    ]); 
+
+                    return true; 
+                } 
+            ], 
+
+        ]); 
+
+        // Check the status of the form 
+        $status = $form->check(); 
+
+        if ($status === true) { 
+            $url = $this->url->create( $comments->page); 
+            $this->response->redirect($url); 
+			session_unset(); 
+         
+        } else if ($status === false) { 
+            header("Location: " . $_SERVER['PHP_SELF']); 
+            exit; 
         } 
-		$comments = new CommentsSession(); 
-        $comments->setDI($this->di); 
-		$url = $this->request->getPost('page');
-		$id = $this->request->getPost('id');
-		
-		$comment = $comments->find($id); 
-         
-        $this->theme->setTitle('Redigera Kommentar'); 
-         
-        $this->views->add('comment/edit',  [ 
-            'mail'      => $comment['mail'], 
-            'web'       => $comment['web'], 
-            'name'      => $comment['name'], 
-            'content'   => $comment['content'], 
-           'id'   		=> $id, 
-            'page'       => $comment['page'],
-		]);  
-    }   
-	
-	/**
-     * Save a specific comment.
-     *
-     * @return void
-     */
-	public function saveAction($id) { 
-		if(!isset($id)) { 
-            die("Missing id"); 
-			}
-		$comment = [ 
-            'content'   => $this->request->getPost('content'), 
-            'name'      => $this->request->getPost('name'), 
-            'web'       => $this->request->getPost('web'), 
-            'mail'      => $this->request->getPost('mail'), 
-            'timestamp' => time(), 
-            'ip'        => $this->request->getServer('REMOTE_ADDR'), 
-			'page'  => $this->request->getPost('page'),
-			]; 
+		$rubrik = "<p>Kommentar till idNr " . $comments->id . " på sidan " .$comments-> page . "</p>" ;
+		$content = $rubrik . $form->getHTML();	
+        $this->theme->setTitle("Redigera Kommentar"); 
+        $this->views->add('me/page', [ 
+            'title' => 'Redigera Kommentar',
+            'content' =>$content, 
+        ]); 
+    }  
 
-        $comments = new CommentsSession(); 
-        $comments->setDI($this->di); 
-		$comments->save($comment,$id); 
-		 
-		$this->response->redirect($this->request->getPost('redirect')); 
-    }     
+/**
+ * Setup table for Commets.
+ *
+ * Also used for resetting to an empty table
+ *
+ * @return void
+ */
+public function setupAction(){
+
+    $this->db->dropTableIfExists('comments')->execute();
+	$this->CommentsController->initialize();
+
+	$this->db->createTable(
+        'comments',
+        [
+            'id' => ['integer', 'primary key', 'not null', 'auto_increment'],
+            'content'  => ['varchar(200)', 'not null'],
+            'mail' 	   => ['varchar(80)'],
+            'name'     => ['varchar(80)'],
+            'web'      => ['varchar(255)'],
+       		'timestamp'=>['datetime'],
+			'ip'	   =>['url'],
+			'page'     =>['varchar(255)'],
+        ]
+    )->execute();
+	  $this->response->redirect($this->request->getPost('page'));
+ }
+
+//end of file	
 }

@@ -13,19 +13,203 @@ $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 // Create services and inject into the app. 
 
+/* Not necessary all functions is in the CommentsController below
 $di->set('CommentController', function() use ($di) {
     $controller = new Phpmvc\Comment\CommentController();
     $controller->setDI($di);
     return $controller;
 });
+*/
 
 //Create specific services for this app
 $di->set('CommentsController', function() use ($di) {
     $controller = new Anax\Comments\CommentsController();
     $controller->setDI($di);
+    return $controller;	
+});
+
+//Create specific services for this app
+ $di->set('FormController', function() use ($di) {
+    $controller = new Anax\HTMLForm\FormController();
+    $controller->setDI($di);
+    return $controller;	
+});
+
+ $di->set('FormSmallController', function() use ($di) {
+    $controller = new Anax\HTMLForm\FormSmallController();
+    $controller->setDI($di);
+    return $controller;	
+});
+
+
+$di->set('UsersController', function() use ($di) {
+    $controller = new \Anax\Users\UsersController();
+    $controller->setDI($di);
     return $controller;
+});
+
+
+$di->setShared('db', function() {
+    $db = new \Mos\Database\CDatabaseBasic();
+  // $db->setOptions(require ANAX_APP_PATH . 'config/config_mysql.php');
+	 $db->setOptions(require ANAX_APP_PATH . 'config/config_sqlite.php');
+    $db->connect();
+    return $db;
+});
+
+$di->set('form', '\Mos\HTMLForm\CForm');
+
+
+$app->router->add('testsqlite', function() use ($app) {
+ $app->theme->setTitle("TestSQLite"); 
+
+    $app->db->dropTableIfExists('user')->execute();
+ 
+    $app->db->createTable(
+        'user',
+        [
+            'id' => ['integer', 'primary key', 'not null', 'auto_increment'],
+            'acronym' => ['varchar(20)', 'unique', 'not null'],
+            'email' => ['varchar(80)'],
+            'name' => ['varchar(80)'],
+            'password' => ['varchar(255)'],
+            'created' => ['datetime'],
+            'updated' => ['datetime'],
+            'deleted' => ['datetime'],
+            'active' => ['datetime'],
+        ]
+    )->execute();
+	
+$app->db->insert(
+        'user',
+        ['acronym', 'email', 'name', 'password', 'created', 'active']
+    );
+ 
+    $now = date(DATE_RFC2822);
+ 
+    $app->db->execute([
+        'admin',
+        'admin@dbwebb.se',
+        'Administrator',
+        password_hash('admin', PASSWORD_DEFAULT),
+        $now,
+        $now
+    ]);
+ 
+    $app->db->execute([
+        'doe',
+        'doe@dbwebb.se',
+        'John/Jane Doe',
+        password_hash('doe', PASSWORD_DEFAULT),
+        $now,
+        $now
+    ]);	
 	
 });
+
+
+
+$app = new \Anax\MVC\CApplicationBasic($di);
+$app->router->add('form1', function() use ($app) {
+    //  $app->theme->setTitle("FormController");  
+	  $app->FormController->indexAction();
+	//   $form = $app->FormController->indexAction();
+   // $app->views->add('me/page', [
+   //     'content' =>$form,
+   // ]);
+	
+});
+
+$app->router->add('form2', function() use ($app) {
+    //  $app->theme->setTitle("FormControllerSmall");  
+	$app->FormSmallController->indexAction();
+	 //  $form = $app->FormSmallController->indexAction();
+  /*  $app->views->add('me/page', [
+        'content' =>$form,
+    ]);
+*/	
+});
+
+
+
+
+
+
+
+
+//$app = new \Anax\MVC\CApplicationBasic($di);
+// Test form route
+$app->router->add('test1', function () use ($app) {
+     $app->session();
+	 
+			
+    $form = $app->form->create([], [
+        'name' => [
+            'type'        => 'text',
+            'label'       => 'Kontaktperson:',
+            'required'    => true,
+            'validation'  => ['not_empty'],
+        ],
+        'email' => [
+            'type'        => 'text',
+			'label'       => 'Epost-adress',
+            'required'    => true,
+            'validation'  => ['not_empty', 'email_adress'],
+        ],
+        'phone' => [
+            'type'        => 'text',
+            'required'    => true,
+			'label'       => 'Telefon-nummer',
+            'validation'  => ['not_empty', 'numeric'],
+        ],
+        'submit' => [
+            'type'      => 'submit',
+            'callback'  => function ($form) {
+                $form->AddOutput("<p><i>DoSubmit(): Form was submitted. Do stuff (save to database) and return true (success) or false (failed processing form)</i></p>");
+                $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
+                $form->AddOutput("<p><b>Email: " . $form->Value('email') . "</b></p>");
+                $form->AddOutput("<p><b>Phone: " . $form->Value('phone') . "</b></p>");
+                $form->saveInSession = true;
+                return true;
+            }
+        ],
+        'submit-fail' => [
+            'type'      => 'submit',
+            'callback'  => function ($form) {
+                $form->AddOutput("<p><i>DoSubmitFail(): Form was submitted but I failed to process/save/validate it</i></p>");
+                return false;
+            }
+        ],
+    ]);
+
+	
+    $callbackSuccess = function ($form) use ($app) {
+        // What to do if the form was submitted?
+        $form->AddOUtput("<p><i>Form was submitted and the callback method returned true.</i></p>");
+        $app->redirectTo();
+    };
+
+    $callbackFail = function ($form) use ($app) {
+            // What to do when form could not be processed?
+            $form->AddOutput("<p><i>Form was submitted and the Check() method returned false.</i></p>");
+            $app->redirectTo();
+    };
+
+
+    // Check the status of the form
+    $form->check($callbackSuccess, $callbackFail);
+
+
+    $app->theme->setTitle("Test med Cform");
+    $app->views->add('me/page', [
+        'title' => "Försök med CForm",
+        'content' => $form->getHTML()
+    ]);
+
+});
+
+	
+	
 
 //Route for Homepage
 $app->router->add('', function() use ($app) {
@@ -108,6 +292,20 @@ $app->router->add('kmom04', function() use ($app) {
     ]);
  	include __DIR__.'/page-with-commentsme.php';
 });
+
+$app->router->add('kmom05', function() use ($app) {
+    $app->theme->setTitle("Kursmoment 5");
+    $content = $app->fileContent->get('kmom05.md');
+    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
+ 	$byline = $app->fileContent->get('byline.md'); 
+    $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
+    $app->views->add('me/page', [
+        'content' => $content,
+        'byline' => $byline,
+    ]);
+ 	include __DIR__.'/page-with-commentsme.php';
+});
+
 
 
 $app->router->add('theme', function() use ($app) {

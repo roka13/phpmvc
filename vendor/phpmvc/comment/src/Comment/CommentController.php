@@ -17,7 +17,7 @@ class CommentController implements \Anax\DI\IInjectionAware
      *
      * @return void
      */
-  public function viewAction()
+    public function viewAction()
     {
         $comments = new \Phpmvc\Comment\CommentsInSession();
         $comments->setDI($this->di);
@@ -51,7 +51,7 @@ class CommentController implements \Anax\DI\IInjectionAware
             'mail'      => $this->request->getPost('mail'),
             'timestamp' => time(),
             'ip'        => $this->request->getServer('REMOTE_ADDR'),
-	        ];
+        ];
 
         $comments = new \Phpmvc\Comment\CommentsInSession();
         $comments->setDI($this->di);

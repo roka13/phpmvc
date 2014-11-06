@@ -54,6 +54,12 @@ return [
                         'url'   => 'kmom04',  
                         'title' => 'Kmom04'
                     ],
+					// This is a menu item of the submenu
+                    'kmom05'  => [
+                        'text'  => 'Kmom05',   
+                        'url'   => 'kmom05',  
+                        'title' => 'Kmom05'
+                    ],
 					
                 ],
             ], 
@@ -65,54 +71,87 @@ return [
             'url'   => 'theme',  
             'title' => 'Tema-Sidorna',
 			
-		// Here we add the submenu, with some menu items, as part of a existing menu item
+			// Here we add the submenu, with some menu items, as part of a existing menu item
             'submenu' => [
 
-                'items' => [	
+					'items' => [	
 			
-			 // This is a menu item of the submenu
+					// This is a menu item of the submenu
                      // This is a menu item
-        'regioner' => [
-            'text'  =>'Regioner Demo', 
-            'url'   =>'regioner',  
-            'title' => 'Regioner'
-        ], 
+					'regioner' => [
+						'text'  =>'Regioner Demo', 
+						'url'   =>'regioner',  
+						'title' => 'Regioner'
+					], 
 		
-		'typography' => [
-            'text'  =>'Typografi Demo', 
-            'url'   =>'typography',  
-            'title' => 'Typografi'
-        ], 
-		'awesome' => [
-            'text'  =>'Awesome Demo', 
-            'url'   =>'awesome',  
-            'title' => 'Awesome'
-        ], 
+					'typography' => [
+						'text'  =>'Typografi Demo', 
+						'url'   =>'typography',  
+						'title' => 'Typografi'
+					], 
+					
+					'awesome' => [
+						'text'  =>'Awesome Demo', 
+						'url'   =>'awesome',  
+						'title' => 'Awesome'
+					], 
+				],	
+			],	
+		],
+		
+		'users' => [
+			'text' => 'Användare', 
+            'url'   =>'Users/list',  
+            'title' => 'Användare',
 			
-		],	
-			
-		],	
-			
-			
-			
-			
-			
-			
-			
+			'submenu' => [ 
+
+				'items' => [ 
+		
+				// This is a submenu item
+					'setup' => [
+						'text'  =>'Återställning/skapa ny Databas', 
+						'url'   =>'Users/setup',  
+						'title' => 'Ny databas'
+					],
+					
+				// This is a submenu item 
+                    'list'  => [ 
+                        'text'  => 'Lista alla',    
+                        'url'   => 'Users/list',   
+                        'title' => 'Lista alla' 
+                    ],
+					// This is a submenu item 
+                    'listactive'  => [ 
+                        'text'  => 'Lista Aktiva',    
+                        'url'   => 'Users/active',   
+                        'title' => 'Lista Aktiva Användare' 
+                    ],
+					
+					// This is a submenu item 
+                    'listinaktiv'  => [ 
+                        'text'  => 'Lista Inaktiva ',    
+                        'url'   => 'Users/inactive',   
+                        'title' => 'Lista inaktiva Användare' 
+                    ],
+					
+					// This is a submenu item 
+                    'listsoftdelete'  => [ 
+                        'text'  => 'Papperskorgen',    
+                        'url'   => 'Users/softdeleted',   
+                        'title' => 'Lista Papperskorg' 
+                    ],
+					
+					
+					
+					
+					
+				],	
+				
+			],
         ],
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+			
  
         // This is a menu item
         'source' => [
@@ -147,8 +186,50 @@ return [
                         'title' => 'Övningex kmom02' 
                     ],
 					
-				],
+			
+			
+		  // This is a submenu item
+        'test1'  => [
+            'text'  => 'Försök med Cform',   
+           'url'   => 'test1',  
+            'title' => 'Tester',
 			],
+			    // Here we add the submenu, with some menu items, as part of a existing menu item 
+            
+		
+		 // This is a submenu item
+					'form1' => [
+					'text'  =>'FormControl', 
+					'url'   =>'form1',  
+					'title' => 'FormControl'
+					],
+		
+				
+			// This is a submenu item
+					'form2' => [
+					'text'  =>'FormSmallControl', 
+					'url'   =>'form2',  
+					'title' => 'FormSmallControl'
+					],
+			/*		
+			// This is a submenu item
+					'testsqlite' => [
+					'text'  =>'Test av SQLite', 
+					'url'   =>'testsqlite',  
+					'title' => 'Test av SQLIte'
+					],
+				*/	
+		/*
+				// This is a submenu item
+					'testmysql' => [
+					'text'  =>'Test av MySql', 
+					'url'   =>'testmysql',  
+					'title' => 'Test av MySql'
+					],			
+			*/
+			],
+        ],		
+			
 		],
 		
 		
