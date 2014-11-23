@@ -5,7 +5,7 @@ return [
  // 'dsn'     => "sqlite:./../data/users.db",
  'dsn'     => "sqlite:./../data/roka.db",
 
-  //  'verbose' => true,
+ // 'verbose' => true,
  // 'debug_connect' => 'true',
 ];
 

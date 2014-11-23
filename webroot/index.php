@@ -11,15 +11,8 @@ require __DIR__.'/config_with_app.php';
 $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
+$app = new \Anax\MVC\CApplicationBasic($di);
 // Create services and inject into the app. 
-
-/* Not necessary all functions is in the CommentsController below
-$di->set('CommentController', function() use ($di) {
-    $controller = new Phpmvc\Comment\CommentController();
-    $controller->setDI($di);
-    return $controller;
-});
-*/
 
 //Create specific services for this app
 $di->set('CommentsController', function() use ($di) {
@@ -48,6 +41,13 @@ $di->set('UsersController', function() use ($di) {
     return $controller;
 });
 
+$di->set('DbtablesController', function() use ($di) {
+    $controll = new \Roka\Dbtables\DbtablesController();
+    $controll->setDI($di);
+    return $controll;
+});
+
+
 
 $di->setShared('db', function() {
     $db = new \Mos\Database\CDatabaseBasic();
@@ -57,8 +57,14 @@ $di->setShared('db', function() {
     return $db;
 });
 
-$di->set('form', '\Mos\HTMLForm\CForm');
-
+$di->setShared('form', '\Mos\HTMLForm\CForm');
+/*$app->router->add('select', function() use ($app) {
+    //  $app->theme->setTitle("FormController");  
+	  $app->DbtablesController->indexAction();
+	//    $app->views->add('dbtables/main', [
+    //   'content' =>$form,
+});
+*/
 
 $app->router->add('testsqlite', function() use ($app) {
  $app->theme->setTitle("TestSQLite"); 
@@ -109,7 +115,7 @@ $app->db->insert(
 
 
 
-$app = new \Anax\MVC\CApplicationBasic($di);
+
 $app->router->add('form1', function() use ($app) {
     //  $app->theme->setTitle("FormController");  
 	  $app->FormController->indexAction();
@@ -129,11 +135,6 @@ $app->router->add('form2', function() use ($app) {
     ]);
 */	
 });
-
-
-
-
-
 
 
 

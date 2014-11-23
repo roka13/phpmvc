@@ -110,7 +110,7 @@ public function idAction($id = null)
             }],
         
 		'reset' => [
-				'type'      => 'reset',
+			'type'      => 'reset',
 				'value' => 'Ångra texten',
 				'callback'  => function($form) {
 			  
@@ -155,6 +155,7 @@ public function idAction($id = null)
     */  
     public function updateAction($id = null)  
     {  
+	session_start();
         $form = $this->form; 
 
         $user = $this->users->find($id); 
@@ -371,7 +372,7 @@ public function activeAction()
 {
     $all = $this->users->query()
         ->where('status = "aktiv"')
-        ->execute();
+	    ->execute();
  
     $this->theme->setTitle("Active Users");
     $this->views->add('users/list-all', [

@@ -1,7 +1,7 @@
 <?php
 // setup url and buttons
  $properties = $user->getProperties();
-	
+ 
  $url1= $this->url->create('users/update/' . $properties['id']);
  $url2= $this->url->create('users/unactivate/' . $properties['id']);
  $url3= $this->url->create('users/activate/'. $properties['id']);

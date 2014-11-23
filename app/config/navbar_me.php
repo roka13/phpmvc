@@ -110,21 +110,21 @@ return [
 		
 				// This is a submenu item
 					'setup' => [
-						'text'  =>'Återställning/skapa ny Databas', 
-						'url'   =>'Users/setup',  
+						'text'  =>'Återställning/skapa ny Användartabell', 
+						'url'   =>'users/setup',  
 						'title' => 'Ny databas'
 					],
 					
 				// This is a submenu item 
                     'list'  => [ 
                         'text'  => 'Lista alla',    
-                        'url'   => 'Users/list',   
+                        'url'   => 'users/list',   
                         'title' => 'Lista alla' 
                     ],
 					// This is a submenu item 
                     'listactive'  => [ 
                         'text'  => 'Lista Aktiva',    
-                        'url'   => 'Users/active',   
+                        'url'   => 'users/active',   
                         'title' => 'Lista Aktiva Användare' 
                     ],
 					
@@ -140,18 +140,33 @@ return [
                         'text'  => 'Papperskorgen',    
                         'url'   => 'Users/softdeleted',   
                         'title' => 'Lista Papperskorg' 
-                    ],
-					
-					
-					
-					
-					
+                    ],			
+				],			
+			],
+        ],
+
+	'dbtabell' => [
+			'text' => 'Datatabeller', 
+            'url'   =>'Dbtables/select',  
+            'title' => 'Tabeller',  
+			
+			'submenu' => [ 
+
+				'items' => [ 
+			
+				
+				// This is a submenu item 
+                    'add'  => [ 
+                        'text'  => 'Lägg till Tabell',    
+                        'url'   => 'Dbtables/empty',   
+                        'title' => 'Lägg till tabell' 
+                    ],	
+
 				],	
 				
 			],
         ],
-
-			
+					
  
         // This is a menu item
         'source' => [
@@ -159,6 +174,9 @@ return [
             'url'   =>'source',  
             'title' => 'Källkod'
         ],
+		
+		
+		
 		
 		// This is a menu item with submenus. 
 

@@ -13,6 +13,7 @@
 	$properties = $user->getProperties();
 
 	$url = $this->url->create('users/id/' . $properties['id']);
+
 		
 	echo <<<EOD
 	<tr>

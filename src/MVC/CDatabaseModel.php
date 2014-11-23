@@ -24,11 +24,13 @@ public function getSource()
  *
  * @return array
  */
-public function findAll()
+public function findAll($from=null)
 {
+  if($from == null){
+   $from=$this->getSource();
+   }
     $this->db->select()
-             ->from($this->getSource());
- 
+             ->from($from);
     $this->db->execute();
     $this->db->setFetchModeClass(__CLASS__);
     return $this->db->fetchAll();
