@@ -3,10 +3,7 @@
  $properties = $dbtabell->getProperties();
 
  $url1= $this->url->create('Dbtables/update/' . $properties['id']);
-// $url2= $this->url->create('tables/unactivate/' . $properties['id']);
- //$url3= $this->url->create('tables/activate/'. $properties['id']);
- //$url4= $this->url->create('tables/softdelete/' . $properties['id']);
-// $url5= $this->url->create('tables/softundelete/' . $properties['id']);
+
  $url6= $this->url->create('Dbtables/delete/' . $properties['id']);
  $url7= $this->url->create('Dbtables/list');
  

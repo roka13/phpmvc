@@ -5,9 +5,9 @@ namespace Roka\Dbtables;
  * Model for databass.
  *
  */
-class DbtablesModel implements \Anax\DI\IInjectionAware
+class DbtablesModel 
 {
-    use \Anax\DI\TInjectable;
+   
 	
 /**
  * Get the table name.
@@ -238,4 +238,4 @@ public function execute($params = [])
  
     return $this->db->fetchAll();
 }
-
+}

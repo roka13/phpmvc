@@ -1,12 +1,12 @@
 <?php
 //$path= realpath(__DIR__ . '/../../../..');
-
+$dsn=ANAX_INSTALL_PATH .'data/roka.db';
 return [
  // 'dsn'     => "sqlite:./../data/users.db",
- 'dsn'     => "sqlite:./../data/roka.db",
+ 'dsn'     => "sqlite:$dsn",
 
  // 'verbose' => true,
- // 'debug_connect' => 'true',
+ //'debug_connect' => 'true',
 ];
 
 

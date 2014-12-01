@@ -5,9 +5,10 @@ namespace Roka\Dbtables;
  * A controller for building a table and admin related events.
  *
  */
-class DbtablesController  implements \Anax\DI\IInjectionAware
+class DbtablesController   implements \Anax\DI\IInjectionAware
 {
-    use \Anax\DI\TInjectable;
+      use \Anax\DI\TInjectable;
+
 
 /**
  * Initialize the controller.
@@ -18,7 +19,7 @@ class DbtablesController  implements \Anax\DI\IInjectionAware
 public function initialize()
 {
 	$this->dbtabell = new \Roka\Dbtables\Dbtables();
-	$this->dbtabell->setDI($this->di);
+	$this->db->setDI($this->di);
 
 }	
 */
@@ -44,8 +45,9 @@ public function initialize()
  * fieldnames
  */
  public function listAction(){
-	if(isset($_POST['tblName']) && $_POST['tblName'] !="tblName" ){
+	if((isset($_POST['tblName']) && $_POST['tblName'] !="tblName" )){
 		$this->theme->setTitle("Visa tabell");
+		
 		$sql1="SELECT * FROM ".$_POST['tblName'];
 		$content=$this->readContent($sql1);
 	
@@ -66,6 +68,7 @@ public function initialize()
  * @returns a select list
 */
 public function selectAction(){
+
 	$this->theme->setTitle("Mina Datatabeller");
 	$sql="SELECT tbl_name FROM sqlite_master WHERE(type='table')";
 	$res=$this->db->execute($sql);

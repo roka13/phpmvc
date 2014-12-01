@@ -48,7 +48,6 @@ $di->set('DbtablesController', function() use ($di) {
 });
 
 
-
 $di->setShared('db', function() {
     $db = new \Mos\Database\CDatabaseBasic();
   // $db->setOptions(require ANAX_APP_PATH . 'config/config_mysql.php');
@@ -63,6 +62,17 @@ $di->setShared('form', '\Mos\HTMLForm\CForm');
 	  $app->DbtablesController->indexAction();
 	//    $app->views->add('dbtables/main', [
     //   'content' =>$form,
+});
+*/
+//  kod i index meny
+/*
+$app->router->add('dbtable', function() use ($app) {
+    $app->theme->setTitle("Mina Databaser");
+	$dbtable = new \Roka\Dbtables\DbtablesController();
+    $app->views->add('me/source', [
+        'content' => $dbtable->selectAction(),
+    ]);
+	//include __DIR__.'/page-with-commentsme.php';
 });
 */
 
@@ -307,7 +317,18 @@ $app->router->add('kmom05', function() use ($app) {
  	include __DIR__.'/page-with-commentsme.php';
 });
 
-
+$app->router->add('kmom06', function() use ($app) {
+    $app->theme->setTitle("Kursmoment 1");
+    $content = $app->fileContent->get('kmom06.md');
+    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
+ 	$byline = $app->fileContent->get('byline.md'); 
+    $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
+    $app->views->add('me/page', [
+        'content' => $content,
+        'byline' => $byline,
+    ]);
+ 	include __DIR__.'/page-with-commentsme.php';
+});
 
 $app->router->add('theme', function() use ($app) {
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_grid.php');

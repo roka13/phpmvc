@@ -71,7 +71,11 @@ public function selectAction(){
 	$res=$this->db->execute($sql);
 	$res= $this->db->fetchAll();
 	$lista= $this->readContentToArray($res);
+<<<<<<< HEAD
+	$this->views->add('Dbtables/maintbl', [
+=======
 	$this->views->add('dbtables/maintbl', [
+>>>>>>> dfb112fc2e73c8ab382cf2b88b1d62325c4e5dbf
 		'title' =>'Mina Data-Tabeller',
 		'lista' =>$lista,
 	  ]);
@@ -122,7 +126,11 @@ function readContent($sql){
 }
 
 public function emptyAction(){
+<<<<<<< HEAD
+	$this->views->add('Dbtables/empty', [
+=======
 	$this->views->add('dbtables/empty', [
+>>>>>>> dfb112fc2e73c8ab382cf2b88b1d62325c4e5dbf
 		'title' =>'Ledsen men sidan är inte klar ännu',
 		'content' =>'<p>Försök igen i framtiden</p>',
     ]);

@@ -60,6 +60,12 @@ return [
                         'url'   => 'kmom05',  
                         'title' => 'Kmom05'
                     ],
+					// This is a menu item of the submenu
+                    'kmom06'  => [
+                        'text'  => 'Kmom06',   
+                        'url'   => 'kmom06',  
+                        'title' => 'Kmom06'
+                    ],
 					
                 ],
             ], 
@@ -161,6 +167,16 @@ return [
                         'url'   => 'Dbtables/empty',   
                         'title' => 'Lägg till tabell' 
                     ],	
+					
+					// This is a submenu item 
+                /*    'dbtable'  => [ 
+                        'text'  => 'Mina Tester',    
+                        'url'   => 'dbtable',   
+                        'title' => 'Mina tester' 
+                    ],	
+*/
+					
+					
 
 				],	
 				

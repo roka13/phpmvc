@@ -4,7 +4,7 @@ namespace Roka\Dbtables;
  * Model for Tables.
  *
  */
-class Dbtables extends  extends \Roka\Dbtables\DbtablesModel
+class Dbtables extends \Roka\Dbtables\DbtablesModel
 { 
 
 private $newtable;
