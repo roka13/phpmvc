@@ -318,7 +318,7 @@ $app->router->add('kmom05', function() use ($app) {
 });
 
 $app->router->add('kmom06', function() use ($app) {
-    $app->theme->setTitle("Kursmoment 1");
+    $app->theme->setTitle("Kursmoment 6");
     $content = $app->fileContent->get('kmom06.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
  	$byline = $app->fileContent->get('byline.md'); 

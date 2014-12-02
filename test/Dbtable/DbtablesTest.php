@@ -19,6 +19,12 @@ $app = new \Anax\Kernel\CAnax($di);
 $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
 $app = new \Anax\MVC\CApplicationBasic($di);
 
+$di->set('DbtablesController', function() use ($di) {
+    $controll = new \Roka\Dbtables\DbtablesController();
+    $controll->setDI($di);
+    return $controll;
+});
+
 $di->setShared('db', function() {
     $db = new \Mos\Database\CDatabaseBasic();
   // $db->setOptions(require ANAX_APP_PATH . 'config/config_mysql.php');
@@ -28,11 +34,7 @@ $di->setShared('db', function() {
 	//$this->db->setDI($this->di);
 	
 });
-$di->set('DbtablesController', function() use ($di) {
-    $controll = new \Roka\Dbtables\DbtablesController();
-    $controll->setDI($di);
-    return $controll;
-});
+
 
   $this->dbTable =$di->get('DbtablesController');
 // $this->db = $di->get('db');
