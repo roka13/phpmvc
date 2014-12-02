@@ -17,6 +17,7 @@ The status below belongs to the Original ANAX-webtemplate:
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/roka13/phpmvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/roka13/phpmvc/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/roka13/phpmvc/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/roka13/phpmvc/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/roka13/phpmvc/badges/build.png?b=master)](https://scrutinizer-ci.com/g/roka13/phpmvc/build-status/master)
+
 -----------------------------------------------------
 
 License 
