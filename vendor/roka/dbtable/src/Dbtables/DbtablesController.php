@@ -5,9 +5,21 @@ namespace Roka\Dbtables;
  * A controller for building a table and admin related events.
  *
  */
-class DbtablesController  implements \Anax\DI\IInjectionAware
+class DbtablesController //  implements \Anax\DI\IInjectionAware
 {
-    use \Anax\DI\TInjectable;
+ public $db;
+ 
+public function __construct($db=null)
+    {
+      if($db !=null){
+        $this->db=$db;
+		}
+	//	print("databasen   $db");
+    }
+
+
+
+    //  use \Anax\DI\TInjectable;
 
 /**
  * Initialize the controller.
@@ -18,7 +30,7 @@ class DbtablesController  implements \Anax\DI\IInjectionAware
 public function initialize()
 {
 	$this->dbtabell = new \Roka\Dbtables\Dbtables();
-	$this->dbtabell->setDI($this->di);
+	$this->db->setDI($this->di);
 
 }	
 */
@@ -44,16 +56,18 @@ public function initialize()
  * fieldnames
  */
  public function listAction(){
-	if(isset($_POST['tblName']) && $_POST['tblName'] !="tblName" ){
-		$this->theme->setTitle("Visa tabell");
+	if((isset($_POST['tblName']) && $_POST['tblName'] !="tblName" )){
+	//$this->theme->setTitle("Visa tabell");
+		
 		$sql1="SELECT * FROM ".$_POST['tblName'];
 		$content=$this->readContent($sql1);
 	
-		$this->views->add('Dbtables/show', [
+	/*	$this->views->add('Dbtables/show', [
 			'title' =>'',
 			'tblcontent' => $content,
 			'tblname' => $_POST['tblName'],
 		]);
+		*/
 	}
 	else{
 		$this->selectAction();
@@ -66,20 +80,21 @@ public function initialize()
  * @returns a select list
 */
 public function selectAction(){
-	$this->theme->setTitle("Mina Datatabeller");
+
+//	$this->theme->setTitle("Mina Datatabeller");
 	$sql="SELECT tbl_name FROM sqlite_master WHERE(type='table')";
-	$res=$this->db->execute($sql);
-	$res= $this->db->fetchAll();
+	$stmt=$this->db->query($sql);
+	$res= $stmt->fetchAll();
 	$lista= $this->readContentToArray($res);
-<<<<<<< HEAD
-	$this->views->add('Dbtables/maintbl', [
-=======
-	$this->views->add('dbtables/maintbl', [
->>>>>>> dfb112fc2e73c8ab382cf2b88b1d62325c4e5dbf
+
+/*	$this->views->add('Dbtables/maintbl', [
 		'title' =>'Mina Data-Tabeller',
 		'lista' =>$lista,
 	  ]);
+	  */
 }
+	/**
+
 	
 /**
  * Function to  build an array from an object
@@ -105,8 +120,8 @@ function readContentToArray($res){
  * returns a Table
 */
 function readContent($sql){
-	$res=$this->db->execute($sql);
-	$res= $this->db->fetchAll();
+	$stmt=$this->db->query($sql);
+	$res= $stmt->fetchAll();
 	// rubrik till tabell
 	$rubrik= $res[0];
 	$html ="<table><tr>";
@@ -126,14 +141,10 @@ function readContent($sql){
 }
 
 public function emptyAction(){
-<<<<<<< HEAD
-	$this->views->add('Dbtables/empty', [
-=======
-	$this->views->add('dbtables/empty', [
->>>>>>> dfb112fc2e73c8ab382cf2b88b1d62325c4e5dbf
+	/*$this->views->add('Dbtables/empty', [
 		'title' =>'Ledsen men sidan är inte klar ännu',
 		'content' =>'<p>Försök igen i framtiden</p>',
-    ]);
+    ]);*/
 }
 
 

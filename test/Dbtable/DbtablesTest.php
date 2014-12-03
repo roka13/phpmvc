@@ -37,9 +37,45 @@ $di->setShared('db', function() {
 
 
   $this->dbTable =$di->get('DbtablesController');
-// $this->db = $di->get('db');
+ $this->db = $di->get('db');
 		
 	}	
+	
+	 /**
+     * Test Create new table, populate it
+     * with testdata and fetch it to compare
+     * @return void
+     *
+     */
+    public function testCreateReadDb() {
+
+	$sql="DROP TABLE IF EXISTS 'test'";
+	$stmt= $this->db->execute($sql);
+	
+	$sql="CREATE TABLE test(
+		id integer primary key ,
+		namn varchar(10),
+		yrke varchar(10),
+		betyg varchar(3)
+	)";
+	$stmt= $this->db->execute($sql);
+	
+	$values =array(5,'jonte','sotare','aaa');
+	$sql="INSERT INTO test VALUES( 5,'jonte','sotare','aaa')";
+	$stmt=$this->db->execute($sql);
+	
+	$sql="SELECT * FROM test";
+	$res=$this->db->execute($sql);
+	$res=$this->db->fetchAll();
+	$answer=array();
+	
+	$answer= $this->dbTable->readContentToArray($res);
+	$this->assertEquals($values,$answer,' not equal');
+}
+	
+	
+	
+	
     /**
      * Test 
      *

@@ -28,6 +28,7 @@ fungerar och att all kod täcks in. Resultatet av de här testerna gav ett hyggl
   
 [Mitt paket på Packagist: ]( https://packagist.org/packages/roka/dbtable )   
 [Mitt paket på Github: ](https://github.com/roka13/roka.git)  
+[Scrutinzer:](https://scrutinizer-ci.com/g/roka13/roka/)  
 
 Extrauppgift
 ---------------
@@ -38,6 +39,8 @@ till min mapp app/src.
  Code coverage för min Dbtable i det totala paketet är lika högt som i det enkla testet ovan men totalt dras det ned eftersom
 hela Anax är inkluderat med sin 60-talet tester. Här finns mer att göra !
 
-[Denna webplats på Github](https://github.com/roka13/phpmvc.git)
+[Denna webplats på Github](https://github.com/roka13/phpmvc.git)  
+[Travis](https://travis-ci.org/roka13/phpmvc)  
+[Scrutinizer](https://scrutinizer-ci.com/g/roka13/phpmvc/)
 
 
