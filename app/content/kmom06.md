@@ -37,7 +37,12 @@ för att initiera erforderliga delar av Anax dels i config-filen samt även i te
 Travis gick det sämre. Den hittade inte *\Mos\Database\CDatabaseBasic();* med mindre än att jag fick kopiera upp mos-database paketet
 till min mapp app/src.
  Code coverage för min Dbtable i det totala paketet är lika högt som i det enkla testet ovan men totalt dras det ned eftersom
-hela Anax är inkluderat med sin 60-talet tester. Här finns mer att göra !
+hela Anax är inkluderat med sin 60-talet tester. Här finns mer att göra ! Jag lade även till ett test att  skapa en ny tabell och återläsa
+denna för att se om skrivning och läsning sker på rätt sätt. Här började jag även i min separata modul och la till samma funktion för att 
+sedan föra över och anpassa den till Anax. Det visade sig då att det var väsentligt mycket lättare att få till koden direkt i Anax eftersom jag 
+redan tidigare hade fixat all koppling till den i setUp-funktionen.  Jag har mycket bortkommenterad kod i min modul som är början till ett 
+större paket. Denna kod tycker Scrutinizer är onödig och klassar den även som bug men jag har den kvar för framtida bruk och lyssnar inte
+på Scrutinizer i detta fall.
 
 [Denna webplats på Github](https://github.com/roka13/phpmvc.git)  
 [Travis](https://travis-ci.org/roka13/phpmvc)  

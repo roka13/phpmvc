@@ -23,19 +23,6 @@ public function initialize()
 
 }	
 */
-/**
-     * View all comments.
-     *
-     * @return void
-     */
-/*
-	 public function addAction()
-    {
-	$this-> DbtablesController->initialize();
-	$this->dbtabell->addAction();
-       
-    }
-*/
 
 
 /**
@@ -512,45 +499,42 @@ public function activeAction()
     ]);
 }
 */
+
+
 /*
-public function setupAction($newtable='nytabell'){
+public function createTableAction($newtable='test'){
 
  $this->DbtablesController->initialize();
-	$this->theme->setTitle("Nollställning av databas");
+	$this->theme->setTitle("Create New Table");
 
 		$this->db->dropTableIfExists($newtable)->execute();
 
 	$this->db->createTable(
 	$newtable,
 	[
-            'id' => ['integer', 'primary key', 'not null', 'auto_increment'],
-            'tablename' => ['varchar(20)', 'unique', 'not null'],
-            'fields' => ['integer','not null'],
-             'created' => ['datetime'],
+            'id' => ['integer', 'primary key', 'not null' ],
+            'namn' => ['varchar(20)', 'unique', 'not null'],
+             'yrke' =>['varchar(20)'],
+			 'betyg' =>['varchar(3)']
           ]
         )->execute();
 
 //Lägg till testtabeller
 	 $this->db->insert(
        $newtable,
-        ['tablename','fields','created']
+        ['id','name','yrke','betyg']
         );
                    
- 
-	$now = date('Y-m-d');
+ 	
+	$this->db->execute([
+	'5',
+        'jonte',
+          'sotare',
+		  'aaa'
+		]);
+
+	$this->db->execute([
 	
-	$this->db->execute([
-	'en ny tabell',
-        '5',
-          $now
-		]);
-
-	$this->db->execute([
-	'ännu en tabell',
-        '15',
-         $now,
-		]);
-
 
 
 $all = $this->tabell->findAll();

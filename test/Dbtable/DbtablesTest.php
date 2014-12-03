@@ -85,14 +85,7 @@ $di->setShared('db', function() {
     public function testSelectTable() {
  
 	 $this->dbTable->selectAction();
-		//select;
- 	 /*
-	try{
-	
 
-		}
-		catch(Exception $e){
-	}*/
 	}
 	
 	 /**
@@ -103,7 +96,7 @@ $di->setShared('db', function() {
      */
     public function testListTable() {
 	
-	$_POST['tblName']= 'comments';
+	$_POST['tblName']= 'test';
 		$this->dbTable->listAction();
 	
 	}
