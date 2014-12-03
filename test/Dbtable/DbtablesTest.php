@@ -58,11 +58,11 @@ $di->setShared('db', function() {
 		yrke varchar(10),
 		betyg varchar(3)
 	)";
-	$stmt= $this->db->execute($sql);
+	$this->db->execute($sql);
 	
 	$values =array(5,'jonte','sotare','aaa');
 	$sql="INSERT INTO test VALUES( 5,'jonte','sotare','aaa')";
-	$stmt=$this->db->execute($sql);
+	$this->db->execute($sql);
 	
 	$sql="SELECT * FROM test";
 	$res=$this->db->execute($sql);
