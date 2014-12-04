@@ -2,7 +2,8 @@ imports:
     - php
 
 filter:
-    excluded_paths: [vendor/*, test/*,unitests/*]
+paths:app/Dbtables/*
+    excluded_paths: [vendor/*, test/*,unitests/*,roka/*,coverage/*]
 
 tools:
     external_code_coverage:
