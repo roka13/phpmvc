@@ -67,6 +67,13 @@ return [
                         'title' => 'Kmom06'
                     ],
 					
+					// This is a menu item of the submenu
+                    'kmom07/10'  => [
+                        'text'  => 'Kmom07/10',   
+                        'url'   => 'kmom07/10',  
+                        'title' => 'Kmom=07/10 '
+                    ],
+					
                 ],
             ], 
         ],

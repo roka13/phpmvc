@@ -330,6 +330,20 @@ $app->router->add('kmom06', function() use ($app) {
  	include __DIR__.'/page-with-commentsme.php';
 });
 
+
+$app->router->add('kmom07/10', function() use ($app) {
+    $app->theme->setTitle("Projekt 07/10 ");
+    $content = $app->fileContent->get('kmom07-10.md');
+    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
+ 	$byline = $app->fileContent->get('byline.md'); 
+    $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
+    $app->views->add('me/page', [
+        'content' => $content,
+        'byline' => $byline,
+    ]);
+});
+
+
 $app->router->add('theme', function() use ($app) {
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_grid.php');
     $app->theme->setTitle("Tema"); 
